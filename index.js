@@ -43,7 +43,7 @@ function Servst(route) {
       return fn();
     }
 
-    var filename = path.join(process.cwd(), route, req.url);
+    var filename = path.join(route, req.url);
 
     fs.exists(filename, function(exist) {
 
@@ -52,7 +52,7 @@ function Servst(route) {
         fs.createReadStream(filename).pipe(res);
       } else {
         fn({
-          url : req.url,
+          url : filename,
           status : 404
         });
       }
