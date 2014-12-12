@@ -1,6 +1,6 @@
 {
   "name": "servst",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Module for serve static files",
   "author": {
     "name": "Andrey Polischuk",
