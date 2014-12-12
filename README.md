@@ -11,7 +11,7 @@
 ```js
 var http = require('http');
 var servst = require('servst');
-var static = servst('/static');
+var static = servst(__dirname + '/static');
 
 http.createServer(function(req, res) {
   static(req, res, function(err) {
