@@ -51,7 +51,10 @@ function Servst(route) {
         res.writeHead(200, { 'Content-Type' : mimeType });
         fs.createReadStream(filename).pipe(res);
       } else {
-        fn({ status : 404 });
+        fn({
+          url : req.url,
+          status : 404
+        });
       }
 
     });
