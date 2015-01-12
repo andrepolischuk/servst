@@ -1,12 +1,7 @@
 {
   "name": "servst",
-  "version": "1.0.0",
   "description": "Module for serve static files",
-  "author": {
-    "name": "Andrey Polischuk",
-    "email": "<andre.polischuk@gmail.com>"
-  },
-  "homepage": "https://github.com/andrepolischuk/servst",
+  "version": "1.0.0",
   "keywords": [
     "static",
     "files",
@@ -16,18 +11,7 @@
     "type": "git",
     "url": "https://github.com/andrepolischuk/servst.git"
   },
-  "bugs": {
-    "url": "https://github.com/andrepolischuk/servst/issues"
-  },
-  "licenses": [{
-    "type": "MIT",
-    "url": "http://github.com/andrepolischuk/servst/blob/master/LICENSE"
-  }],
   "main": "index.js",
-  "engines": {
-
-  },
-  "dependencies": {
-
-  }
+  "author": "Andrey Polischuk <andre.polischuk@gmail.com>",
+  "license": "MIT"
 }
