@@ -5,10 +5,10 @@
 ## Instalation
 
 ```sh
-npm install servst
+$ npm install servst
 ```
 
-## Usage
+## Use
 
 ```js
 var http = require('http');
@@ -37,4 +37,4 @@ var servstExample = servst(__dirname + '/static');
 
 ### servstExample(req, res, next)
 
-  Start listener.
+  Start listener
