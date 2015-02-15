@@ -4,6 +4,7 @@
 
 var path = require('path');
 var fs = require('fs');
+var url = require('url');
 
 /**
  * Static mimetypes
@@ -23,61 +24,67 @@ var mimeTypes = {
 };
 
 /**
- * Module
- * @param  {String} route
+ * Serve object
+ * @param  {String} root
  * @return {Function}
  * @api private
  */
 
-function Servst(route) {
-
-  return function(req, res, fn) {
-
-    if (req.method !== 'GET' && req.method !== 'HEAD') {
-      return fn();
-    }
-
-    var mimeType = mimeTypes[path.extname(req.url)];
-
-    if (!mimeType) {
-      return fn();
-    }
-
-    var filename = path.join(route, req.url);
-
-    fs.exists(filename, function(exist) {
-
-      if (exist) {
-        res.writeHead(200, { 'Content-Type' : mimeType });
-        fs.createReadStream(filename).pipe(res);
-      } else {
-        fn({
-          url : filename,
-          status : 404
-        });
-      }
-
-    });
-
-  };
-
+function Servst(root) {
+  this.root = path.normalize(root);
+  return this.serve.bind(this);
 }
 
 /**
+ * Serve file
+ * @param  {Object}   req
+ * @param  {Object}   res
+ * @param  {Function} fn
+ * @return {Mixed}
+ * @api private
+ */
+
+Servst.prototype.serve = function(req, res, fn) {
+
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    return fn();
+  }
+
+  var filePath = decodeURIComponent(url.parse(req.url).pathname);
+  var mimeType = mimeTypes[path.extname(filePath)];
+
+  if (!mimeType) {
+    return fn();
+  }
+
+  var fileName = path.normalize(path.join(this.root, filePath));
+
+  fs.exists(fileName, function(exist) {
+    if (exist) {
+      res.writeHead(200, { 'Content-Type' : mimeType });
+      fs.createReadStream(fileName).pipe(res);
+    } else {
+      fn({
+        url : fileName,
+        status : 404
+      });
+    }
+  });
+
+};
+
+/**
  * Module creator
- * @param  {String} route
+ * @param  {String} root
  * @return {Object}
  * @api public
  */
 
-function Creator(route) {
-
-  if (typeof route !== 'string') {
+function Creator(root) {
+  if (typeof root !== 'string') {
     return;
   }
-
-  return new Servst(route);
-
+  return new Servst(root);
 }
 
 /**
