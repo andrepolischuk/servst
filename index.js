@@ -57,18 +57,35 @@ Servst.prototype.serve = function(req, res, fn) {
     return fn();
   }
 
-  var fileName = path.normalize(path.join(this.root, filePath));
+  if (~filePath.indexOf('\0')) {
+    fn({
+      url : filePath,
+      status : 400
+    });
+  }
 
-  fs.exists(fileName, function(exist) {
-    if (exist) {
-      res.writeHead(200, { 'Content-Type' : mimeType });
-      fs.createReadStream(fileName).pipe(res);
-    } else {
+  filePath = path.normalize(path.join(this.root, filePath));
+
+  if (filePath.indexOf(this.root) !== 0) {
+    fn({
+      url : filePath,
+      status : 404
+    });
+  }
+
+  fs.exists(filePath, function(exist) {
+
+    if (!exist) {
       fn({
-        url : fileName,
+        url : filePath,
         status : 404
       });
+      return;
     }
+
+    res.writeHead(200, { 'Content-Type' : mimeType });
+    fs.createReadStream(filePath).pipe(res);
+
   });
 
 };
