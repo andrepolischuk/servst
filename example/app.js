@@ -3,7 +3,7 @@
  */
 
 var http = require('http');
-var servst = require('servst');
+var servst = require('..');
 
 /**
  * Create example
