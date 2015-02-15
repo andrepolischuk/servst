@@ -27,9 +27,9 @@ http.createServer(function(req, res) {
 
 ## API
 
-### servst(route)
+### servst(root)
 
-  Create example for defined `route`:
+  Create example for defined `root`:
 
 ```js
 var servstExample = servst(__dirname + '/static');
@@ -38,3 +38,7 @@ var servstExample = servst(__dirname + '/static');
 ### servstExample(req, res, next)
 
   Start listener
+
+## License
+
+  MIT
