@@ -5,23 +5,7 @@
 var path = require('path');
 var fs = require('fs');
 var url = require('url');
-
-/**
- * Static mimetypes
- */
-
-var mimeTypes = {
-  '.html' : 'text/html',
-  '.md' : 'text/plain',
-  '.txt' : 'text/plain',
-  '.jpeg' : 'image/jpeg',
-  '.jpg' : 'image/jpeg',
-  '.png' : 'image/png',
-  '.gif' : 'image/gif',
-  '.ico' : 'image/x-icon',
-  '.js' : 'text/javascript',
-  '.css' : 'text/css'
-};
+var mime = require('mime');
 
 /**
  * Serve object
@@ -51,7 +35,6 @@ Servst.prototype.serve = function(req, res, fn) {
   }
 
   var filePath = decodeURIComponent(url.parse(req.url).pathname);
-  var mimeType = mimeTypes[path.extname(filePath)];
 
   if (!path.extname(filePath)) {
     return fn();
@@ -83,7 +66,8 @@ Servst.prototype.serve = function(req, res, fn) {
       return;
     }
 
-    res.writeHead(200, { 'Content-Type' : mimeType });
+    var mimeType = mime.lookup(filePath);
+    res.writeHead(200, { 'Content-Type' : mimeType + '; charset=utf-8' });
     fs.createReadStream(filePath).pipe(res);
 
   });
