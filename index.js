@@ -53,7 +53,7 @@ Servst.prototype.serve = function(req, res, fn) {
   var filePath = decodeURIComponent(url.parse(req.url).pathname);
   var mimeType = mimeTypes[path.extname(filePath)];
 
-  if (!mimeType) {
+  if (!path.extname(filePath)) {
     return fn();
   }
 
