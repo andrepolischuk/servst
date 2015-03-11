@@ -30,7 +30,6 @@ function Servst(root) {
  */
 
 Servst.prototype.serve = function(req, res, fn) {
-
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     return fn();
   }
@@ -58,7 +57,6 @@ Servst.prototype.serve = function(req, res, fn) {
   }
 
   fs.exists(filePath, function(exist) {
-
     if (!exist) {
       fn({
         url : filePath,
@@ -70,9 +68,7 @@ Servst.prototype.serve = function(req, res, fn) {
     var mimeType = mime.lookup(filePath);
     res.writeHead(200, { 'Content-Type' : mimeType + '; charset=utf-8' });
     fs.createReadStream(filePath).pipe(res);
-
   });
-
 };
 
 /**

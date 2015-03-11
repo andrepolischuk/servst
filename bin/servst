@@ -20,21 +20,6 @@ program
   .parse(process.argv);
 
 /**
- * Examples
- */
-
-program.on('--help', function() {
-  console.log('  Examples:');
-  console.log();
-  console.log('    # serve files from .');
-  console.log('    $ servst');
-  console.log();
-  console.log('    # serve files from ./static');
-  console.log('    $ servst ./static');
-  console.log();
-});
-
-/**
  * Whitespaces
  */
 

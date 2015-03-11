@@ -1,24 +1,36 @@
 # Servst
 
-  Module for serve static files
+  Simple file server with CLI support
 
 ## Instalation
 
 ```sh
-$ npm install servst
+$ npm install -g servst
 ```
 
 ## Use
 
+```sh
+Usage: servst [options] [dir]
+
+Options:
+
+  -h, --help         output usage information
+  -V, --version      output the version number
+  -p, --port <port>  specify port
+```
+
+## Example
+
 ```js
 var http = require('http');
 var servst = require('servst');
-var serveStatic = servst(__dirname + '/static');
+var staticServer = servst(__dirname + '/static');
 
 http.createServer(function(req, res) {
-  serveStatic(req, res, function(err) {
+  staticServer(req, res, function(err) {
     if (err) {
-      res.writeHead(404, { 'Content-Type' : 'text/plain' });
+      res.writeHead(404, {'Content-Type': 'text/plain'});
       res.end('Not found');
     }
   });
@@ -27,15 +39,15 @@ http.createServer(function(req, res) {
 
 ## API
 
-### servst(root)
+### servst(path)
 
-  Create example for defined `root`:
+  Create example for defined `path`:
 
 ```js
-var servstExample = servst(__dirname + '/static');
+var staticServer = servst(__dirname + '/static');
 ```
 
-### servstExample(req, res, next)
+### staticServer(req, res, next)
 
   Start listener
 

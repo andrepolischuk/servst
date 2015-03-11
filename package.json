@@ -1,11 +1,12 @@
 {
   "name": "servst",
-  "description": "Module for serve static files",
-  "version": "1.1.0",
+  "description": "Simple file server with CLI support",
+  "version": "1.2.0",
   "keywords": [
     "static",
     "files",
-    "serve"
+    "server",
+    "cli"
   ],
   "repository": {
     "type": "git",
