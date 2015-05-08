@@ -39,14 +39,14 @@ var path = resolve(program.args.shift() || '.');
  * Create static
  */
 
-var staticServer = servst(path);
+var statics = servst(path);
 
 /**
  * Create server
  */
 
 var server = http.createServer(function(req, res) {
-  staticServer(req, res, function(err) {
+  statics(req, res, function(err) {
     if (err) {
       res.writeHead(404, {'Content-Type': 'text/plain'});
       res.end('Not found');

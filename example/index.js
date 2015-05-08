@@ -1,3 +1,4 @@
+
 /**
  * Module dependencies
  */
@@ -9,16 +10,14 @@ var servst = require('..');
  * Create example
  */
 
-var serveStatic = servst(__dirname + '/static');
+var statics = servst(__dirname + '/static');
 
 /**
  * Module exports
  */
 
 http.createServer(function(req, res) {
-
-  serveStatic(req, res, function(err) {
-
+  statics(req, res, function(err) {
     if (err) {
       res.writeHead(404, { 'Content-Type' : 'text/plain' });
       res.end('Not found');
@@ -26,7 +25,5 @@ http.createServer(function(req, res) {
 
     res.writeHead(200, { 'Content-Type' : 'text/plain' });
     res.end('Hello!');
-
   });
-
 }).listen(3000);
