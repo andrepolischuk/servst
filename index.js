@@ -11,6 +11,12 @@ var url = require('url');
 var mime = require('mime');
 
 /**
+ * Expose server
+ */
+
+module.exports = Servst;
+
+/**
  * Serve object
  * @param  {String} root
  * @return {Function}
@@ -18,6 +24,9 @@ var mime = require('mime');
  */
 
 function Servst(root) {
+  if (!(this instanceof Servst)) return new Servst(root);
+  if (typeof root !== 'string') return;
+
   this.root = path.normalize(root);
   return this.serve.bind(this);
 }
@@ -33,9 +42,7 @@ function Servst(root) {
 
 Servst.prototype.serve = function(req, res, fn) {
   if (!/^(GET|HEAD)$/.test(req.method)) return fn();
-
   var filePath = decodeURIComponent(url.parse(req.url).pathname);
-
   if (!path.extname(filePath)) return fn();
 
   if (~filePath.indexOf('\0')) {
@@ -68,21 +75,3 @@ Servst.prototype.serve = function(req, res, fn) {
     fs.createReadStream(filePath).pipe(res);
   });
 };
-
-/**
- * Module creator
- * @param  {String} root
- * @return {Object}
- * @api public
- */
-
-function Creator(root) {
-  if (typeof root !== 'string') return;
-  return new Servst(root);
-}
-
-/**
- * Module exports
- */
-
-module.exports = Creator;
