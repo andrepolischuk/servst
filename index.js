@@ -1,4 +1,6 @@
 
+'use strict';
+
 /**
  * Module dependencies
  */
@@ -30,20 +32,16 @@ function Servst(root) {
  */
 
 Servst.prototype.serve = function(req, res, fn) {
-  if (req.method !== 'GET' && req.method !== 'HEAD') {
-    return fn();
-  }
+  if (!/^(GET|HEAD)$/.test(req.method)) return fn();
 
   var filePath = decodeURIComponent(url.parse(req.url).pathname);
 
-  if (!path.extname(filePath)) {
-    return fn();
-  }
+  if (!path.extname(filePath)) return fn();
 
   if (~filePath.indexOf('\0')) {
     fn({
-      url : filePath,
-      status : 400
+      url: filePath,
+      status: 400
     });
   }
 
@@ -51,22 +49,22 @@ Servst.prototype.serve = function(req, res, fn) {
 
   if (filePath.indexOf(this.root) !== 0) {
     fn({
-      url : filePath,
-      status : 404
+      url: filePath,
+      status: 404
     });
   }
 
   fs.exists(filePath, function(exist) {
     if (!exist) {
       fn({
-        url : filePath,
-        status : 404
+        url: filePath,
+        status: 404
       });
       return;
     }
 
     var mimeType = mime.lookup(filePath);
-    res.writeHead(200, { 'Content-Type' : mimeType + '; charset=utf-8' });
+    res.writeHead(200, {'Content-Type': mimeType + '; charset=utf-8'});
     fs.createReadStream(filePath).pipe(res);
   });
 };
@@ -79,9 +77,7 @@ Servst.prototype.serve = function(req, res, fn) {
  */
 
 function Creator(root) {
-  if (typeof root !== 'string') {
-    return;
-  }
+  if (typeof root !== 'string') return;
   return new Servst(root);
 }
 
