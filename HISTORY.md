@@ -1,3 +1,11 @@
+# 1.2.1 / 2015.05.08
+
+  * Fix eslint errors
+  * Add test
+  * Add travis
+  * Add npm scripts instead of Makefile
+  * Refactor
+
 # 1.2.0 / 2015.03.11
 
   * Add CLI support #1
