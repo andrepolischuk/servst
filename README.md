@@ -1,4 +1,4 @@
-# servst
+# servst [![Build Status](https://travis-ci.org/andrepolischuk/servst.svg?branch=master)](https://travis-ci.org/andrepolischuk/servst)
 
   Simple file server with CLI support
 
