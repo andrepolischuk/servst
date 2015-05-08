@@ -24,6 +24,9 @@
     "servst": "bin/servst"
   },
   "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
   "author": "Andrey Polischuk <andre.polischuk@gmail.com>",
   "license": "MIT"
 }
