@@ -1,34 +1,22 @@
-# Servst
+# servst
 
   Simple file server with CLI support
 
 ## Instalation
 
 ```sh
-$ npm install -g servst
+$ npm install servst
 ```
 
-## Use
-
-```sh
-Usage: servst [options] [dir]
-
-Options:
-
-  -h, --help         output usage information
-  -V, --version      output the version number
-  -p, --port <port>  specify port
-```
-
-## Example
+## Usage
 
 ```js
 var http = require('http');
 var servst = require('servst');
-var staticServer = servst(__dirname + '/static');
+var statics = servst(__dirname + '/static');
 
 http.createServer(function(req, res) {
-  staticServer(req, res, function(err) {
+  statics(req, res, function(err) {
     if (err) {
       res.writeHead(404, {'Content-Type': 'text/plain'});
       res.end('Not found');
@@ -44,12 +32,24 @@ http.createServer(function(req, res) {
   Create example for defined `path`:
 
 ```js
-var staticServer = servst(__dirname + '/static');
+var statics = servst(__dirname + '/static');
 ```
 
-### staticServer(req, res, next)
+### statics(req, res, next)
 
   Start listener
+
+## CLI
+
+```sh
+Usage: servst [options] [dir]
+
+Options:
+
+  -h, --help         output usage information
+  -V, --version      output the version number
+  -p, --port <port>  specify port
+```
 
 ## License
 
