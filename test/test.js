@@ -1,4 +1,6 @@
 
+'use strict';
+
 var servst = require('..');
 var http = require('http');
 var assert = require('assert');
@@ -12,6 +14,7 @@ var app = http.createServer(function(req, res) {
       res.writeHead(404, {'Content-Type': 'text/plain'});
       res.end('Not found');
     }
+
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('Hello');
   });
@@ -24,7 +27,7 @@ describe('GET /', function() {
       .expect(200)
       .expect('Content-Type', /text/)
       .expect('Hello')
-      .end(function(err, res) {
+      .end(function(err) {
         assert(err === null);
         done();
       });
@@ -37,7 +40,7 @@ describe('GET /test.js', function() {
       .get('/test.js')
       .expect(200)
       .expect('Content-Type', /javascript/)
-      .end(function(err, res) {
+      .end(function(err) {
         assert(err === null);
         done();
       });
@@ -51,7 +54,7 @@ describe('GET /index.js', function() {
       .expect(404)
       .expect('Content-Type', /text/)
       .expect('Not found')
-      .end(function(err, res) {
+      .end(function(err) {
         assert(err === null);
         done();
       });

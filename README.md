@@ -1,11 +1,11 @@
 # servst [![Build Status](https://travis-ci.org/andrepolischuk/servst.svg?branch=master)](https://travis-ci.org/andrepolischuk/servst)
 
-  Simple file server with CLI support
+  > Simple file server with CLI support
 
 ## Instalation
 
 ```sh
-$ npm install servst
+$ npm install --save servst
 ```
 
 ## Usage
@@ -42,13 +42,19 @@ var statics = servst(__dirname + '/static');
 ## CLI
 
 ```sh
-Usage: servst [options] [dir]
+$ npm install --global servst
+```
 
-Options:
+```sh
+$ servst --help
 
-  -h, --help         output usage information
-  -V, --version      output the version number
-  -p, --port <port>  specify port
+  Usage: servst [options] [dir]
+
+  Options:
+
+    -h, --help         output usage information
+    -V, --version      output the version number
+    -p, --port <port>  specify port
 ```
 
 ## License
