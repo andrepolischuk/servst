@@ -25,6 +25,17 @@ http.createServer(function(req, res) {
 }).listen(3000);
 ```
 
+  With express
+
+```js
+var express = require('express');
+var servst = require('servst');
+var app = express();
+
+app.use(servst(__dirname + '/static'));
+app.listen(3000);
+```
+
 ## API
 
 ### servst(path)
