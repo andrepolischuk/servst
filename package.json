@@ -1,7 +1,7 @@
 {
   "name": "servst",
   "description": "Simple file server with CLI support",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "keywords": [
     "static",
     "files",
