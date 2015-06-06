@@ -2,10 +2,10 @@
 
   > Simple file server with CLI support
 
-## Instalation
+## Install
 
 ```sh
-$ npm install --save servst
+npm install --save servst
 ```
 
 ## Usage
@@ -31,8 +31,9 @@ http.createServer(function(req, res) {
 var express = require('express');
 var servst = require('servst');
 var app = express();
+var statics = servst(__dirname + '/static');
 
-app.use(servst(__dirname + '/static'));
+app.use(statics);
 app.listen(3000);
 ```
 
@@ -53,11 +54,11 @@ var statics = servst(__dirname + '/static');
 ## CLI
 
 ```sh
-$ npm install --global servst
+npm install --global servst
 ```
 
 ```sh
-$ servst --help
+servst --help
 
   Usage: servst [options] [dir]
 

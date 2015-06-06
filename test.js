@@ -1,7 +1,7 @@
 
 'use strict';
 
-var servst = require('..');
+var servst = require('./');
 var http = require('http');
 var assert = require('assert');
 var request = require('supertest');
@@ -47,10 +47,10 @@ describe('GET /test.js', function() {
   });
 });
 
-describe('GET /index.js', function() {
+describe('GET /test2.js', function() {
   it('should return 404', function(done) {
     request(app)
-      .get('/index.js')
+      .get('/test2.js')
       .expect(404)
       .expect('Content-Type', /text/)
       .expect('Not found')

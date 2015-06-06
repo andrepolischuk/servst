@@ -4,7 +4,7 @@
  * Module dependencies
  */
 
-var servst = require('..');
+var servst = require('./');
 var http = require('http');
 var resolve = require('path').resolve;
 var program = require('commander');
