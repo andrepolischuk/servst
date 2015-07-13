@@ -1,18 +1,10 @@
 
 'use strict';
 
-/**
- * Module dependencies
- */
-
 var path = require('path');
 var fs = require('fs');
 var url = require('url');
 var mime = require('mime');
-
-/**
- * Expose server
- */
 
 module.exports = function(root) {
   if (typeof root !== 'string') return;
