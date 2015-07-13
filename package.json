@@ -1,16 +1,14 @@
 {
   "name": "servst",
-  "description": "Simple file server with CLI support",
+  "description": "Simple file server",
   "version": "1.2.4",
   "keywords": [
     "static",
     "files",
-    "server",
-    "cli"
+    "server"
   ],
   "repository": "andrepolischuk/servst",
   "dependencies": {
-    "commander": "^2.7.1",
     "mime": "^1.3.4"
   },
   "devDependencies": {
@@ -18,7 +16,6 @@
     "supertest": "^0.15.0"
   },
   "main": "index.js",
-  "bin": "cli.js",
   "scripts": {
     "test": "mocha"
   },

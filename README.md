@@ -1,6 +1,8 @@
-# servst [![Build Status](https://travis-ci.org/andrepolischuk/servst.svg?branch=master)](https://travis-ci.org/andrepolischuk/servst)
+# servst [![Build Status][travis-image]][travis-url]
 
-  > Simple file server with CLI support
+  > Simple file server
+
+  [servst-cli][servst-cli] - CLI for this module
 
 ## Install
 
@@ -37,38 +39,11 @@ app.use(statics);
 app.listen(3000);
 ```
 
-## API
-
-### servst(path)
-
-  Create example for defined `path`:
-
-```js
-var statics = servst(__dirname + '/static');
-```
-
-### statics(req, res, next)
-
-  Start listener
-
-## CLI
-
-```sh
-npm install --global servst
-```
-
-```sh
-servst --help
-
-  Usage: servst [options] [dir]
-
-  Options:
-
-    -h, --help         output usage information
-    -V, --version      output the version number
-    -p, --port <port>  specify port
-```
-
 ## License
 
   MIT
+
+[travis-url]: https://travis-ci.org/andrepolischuk/servst
+[travis-image]: https://travis-ci.org/andrepolischuk/servst.svg?branch=master
+
+[servst-cli]: https://github.com/andrepolischuk/servst-cli
