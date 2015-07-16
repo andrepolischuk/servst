@@ -1,11 +1,9 @@
-
 'use strict';
 
 var servst = require('./');
 var http = require('http');
 var assert = require('assert');
 var request = require('supertest');
-
 var statics = servst(__dirname);
 
 var app = http.createServer(function(req, res) {
