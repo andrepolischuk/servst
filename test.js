@@ -1,5 +1,4 @@
 'use strict';
-
 var servst = require('./');
 var http = require('http');
 var assert = require('assert');
