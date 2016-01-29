@@ -1,12 +1,12 @@
 'use strict';
-var servst = require('./');
+var test = require('ava');
 var http = require('http');
-var assert = require('assert');
 var request = require('supertest');
+var servst = require('./');
 var statics = servst(__dirname);
 
-var app = http.createServer(function(req, res) {
-  statics(req, res, function(err) {
+var app = http.createServer(function (req, res) {
+  statics(req, res, function (err) {
     if (err) {
       res.writeHead(404, {'Content-Type': 'text/plain'});
       res.end('Not found');
@@ -17,43 +17,37 @@ var app = http.createServer(function(req, res) {
   });
 });
 
-describe('GET /', function() {
-  it('should return 200', function(done) {
-    request(app)
-      .get('/')
-      .expect(200)
-      .expect('Content-Type', /text/)
-      .expect('Hello')
-      .end(function(err) {
-        assert(err === null);
-        done();
-      });
-  });
+test.cb('return 200 for GET /', function (t) {
+  request(app)
+    .get('/')
+    .expect(200)
+    .expect('Content-Type', /text/)
+    .expect('Hello')
+    .end(function (err) {
+      t.ifError(err);
+      t.end();
+    });
 });
 
-describe('GET /test.js', function() {
-  it('should return 200', function(done) {
-    request(app)
-      .get('/test.js')
-      .expect(200)
-      .expect('Content-Type', /javascript/)
-      .end(function(err) {
-        assert(err === null);
-        done();
-      });
-  });
+test.cb('return 200 for GET /test.js', function (t) {
+  request(app)
+    .get('/test.js')
+    .expect(200)
+    .expect('Content-Type', /javascript/)
+    .end(function (err) {
+      t.ifError(err);
+      t.end();
+    });
 });
 
-describe('GET /test2.js', function() {
-  it('should return 404', function(done) {
-    request(app)
-      .get('/test2.js')
-      .expect(404)
-      .expect('Content-Type', /text/)
-      .expect('Not found')
-      .end(function(err) {
-        assert(err === null);
-        done();
-      });
-  });
+test.cb('return 404 GET /test2.js', function (t) {
+  request(app)
+    .get('/test2.js')
+    .expect(404)
+    .expect('Content-Type', /text/)
+    .expect('Not found')
+    .end(function (err) {
+      t.ifError(err);
+      t.end();
+    });
 });
