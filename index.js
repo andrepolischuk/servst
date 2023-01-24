@@ -6,7 +6,7 @@ var mime = require('mime');
 
 module.exports = function(root) {
   if (typeof root !== 'string') return;
-  root = path.normalize(root);
+  root = path.normalize(root + '/');
 
   return function(req, res, fn) {
     if (!/^(GET|HEAD)$/.test(req.method)) return fn();
